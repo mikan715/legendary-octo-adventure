@@ -21,6 +21,8 @@ export const useDataStore = defineStore({
 
   actions: {
     async fetchData() {
+      const apiEndpoint = process.env.VUE_APP_API;
+      console.log(apiEndpoint);
       const result = await axios.get(`${apiEndpoint}/dashboard`);
       this.data = result.data;
     },
