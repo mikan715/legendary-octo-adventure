@@ -40,7 +40,7 @@ export const useDataStore = defineStore({
     async login() {
       try {
         const apiEndpoint = process.env.VUE_APP_API;
-        console.log(apiEndpoint);
+        console.log(process.env.VUE_APP_API);
         const response = await axios.get(`${apiEndpoint}/login`, {
           params: { username: this.userName },
         });
