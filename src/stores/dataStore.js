@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-const apiEndpoint = process.env.API_ENDPOINT;
+const apiEndpoint = process.env.VUE_APP_API;
+console.log(apiEndpoint);
 
 export const useDataStore = defineStore({
   id: "dataStore",
