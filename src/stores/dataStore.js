@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
+const apiEndpoint = process.env.REACT_APP_API;
+
 export const useDataStore = defineStore({
   id: "dataStore",
   state: () => ({
@@ -18,13 +20,13 @@ export const useDataStore = defineStore({
 
   actions: {
     async fetchData() {
-      const result = await axios.get("http://127.0.0.1:5000/dashboard");
+      const result = await axios.get(`${apiEndpoint}dashboard`);
       this.data = result.data;
     },
 
     async addNewUser(name) {
       try {
-        const response = await axios.post("http://127.0.0.1:5000/addnewuser", {
+        const response = await axios.post(`${apiEndpoint}addnewuser`, {
           name: name,
           balance: 100.0,
           bets: [],
@@ -37,7 +39,7 @@ export const useDataStore = defineStore({
 
     async login() {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/login", {
+        const response = await axios.get(`${apiEndpoint}login`, {
           params: { username: this.userName },
         });
         console.log(this.userName);
@@ -54,7 +56,7 @@ export const useDataStore = defineStore({
       console.log(this.oddQuote);
       console.log(this.oddValue);
       try {
-        const response = await axios.post("http://127.0.0.1:5000/add_bet", {
+        const response = await axios.post(`${apiEndpoint}add_bet`, {
           user_id: "Anne",
           fixture: this.item.fixture.id,
           wettgeld: this.wettgeld,
