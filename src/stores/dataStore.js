@@ -1,9 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-const apiEndpoint = process.env.VUE_APP_API;
-console.log(apiEndpoint);
-
 export const useDataStore = defineStore({
   id: "dataStore",
   state: () => ({
@@ -41,8 +38,10 @@ export const useDataStore = defineStore({
     },
 
     async login() {
+      const apiEndpoint = process.env.VUE_APP_API;
+      console.log(apiEndpoint);
       try {
-        const response = await axios.get(`${apiEndpoint}login`, {
+        const response = await axios.get(`${apiEndpoint}/login`, {
           params: { username: this.userName },
         });
         console.log(this.userName);
