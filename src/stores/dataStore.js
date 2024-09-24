@@ -39,7 +39,7 @@ export const useDataStore = defineStore({
 
     async login() {
       try {
-        const response = await axios.get(`${apiEndpoint}/login`, {
+        const response = await axios.get(`${apiEndpoint}login`, {
           params: { username: this.userName },
         });
         console.log(this.userName);
