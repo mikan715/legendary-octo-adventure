@@ -39,14 +39,11 @@ export const useDataStore = defineStore({
 
     async login() {
       try {
-        const apiEndpoint = process.env.VUE_APP_API;
+        const apiEndpoint = process.env.VITE_API;
         console.log(process.env.VITE_API);
-        const response = await axios.get(
-          "https://mikan-betapp-e002d391ee05.herokuapp.com/login",
-          {
-            params: { username: this.userName },
-          }
-        );
+        const response = await axios.get(`${apiEndpoint}/login`, {
+          params: { username: this.userName },
+        });
         console.log(this.userName);
         this.userData = response.data;
         console.log("User created with ID:", this.userData);
