@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
+const apiEndpoint = import.meta.env.VITE_API;
+
 export const useDataStore = defineStore({
   id: "dataStore",
   state: () => ({
@@ -18,15 +20,13 @@ export const useDataStore = defineStore({
 
   actions: {
     async fetchData() {
-      const apiEndpoint = process.env.VUE_APP_API;
-      console.log(apiEndpoint);
-      const result = await axios.get(`${apiEndpoint}/dashboard`);
+      const result = await axios.get(`${apiEndpoint}dashboard`);
       this.data = result.data;
     },
 
     async addNewUser(name) {
       try {
-        const response = await axios.post(`${apiEndpoint}addnewuser`, {
+        const response = await axios.post(`${apiEndpoint}/addnewuser`, {
           name: name,
           balance: 100.0,
           bets: [],
@@ -39,8 +39,6 @@ export const useDataStore = defineStore({
 
     async login() {
       try {
-        const apiEndpoint = process.env.VITE_API;
-        console.log(process.env.VITE_API);
         const response = await axios.get(`${apiEndpoint}/login`, {
           params: { username: this.userName },
         });
@@ -59,7 +57,7 @@ export const useDataStore = defineStore({
       console.log(this.oddValue);
       try {
         const response = await axios.post(`${apiEndpoint}add_bet`, {
-          user_id: "Anne",
+          user_id: this.userData.name,
           fixture: this.item.fixture.id,
           wettgeld: this.wettgeld,
           odd: this.oddQuote,

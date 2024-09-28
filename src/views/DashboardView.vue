@@ -43,6 +43,10 @@ function convertTimeReadable(date) {
 
   return readableDate;
 }
+
+function showBets() {
+  console.log(dataStore.userData);
+}
 </script>
 
 <template>
