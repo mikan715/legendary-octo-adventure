@@ -39,7 +39,7 @@ export const useDataStore = defineStore({
 
     async login() {
       try {
-        const response = await axios.get(`${apiEndpoint}/login`, {
+        const response = await axios.get(`${apiEndpoint}login`, {
           params: { username: this.userName },
         });
         console.log(this.userName);
@@ -57,11 +57,16 @@ export const useDataStore = defineStore({
       console.log(this.oddValue);
       try {
         const response = await axios.post(`${apiEndpoint}add_bet`, {
-          user_id: this.userData.name,
+          /* user_id: this.userData.name,
           fixture: this.item.fixture.id,
           wettgeld: this.wettgeld,
           odd: this.oddQuote,
-          value: this.oddValue,
+          value: this.oddValue, */
+          user_id: "Anne",
+          fixute: 1224010,
+          wettgeld: 5,
+          odd: "Home",
+          value: 2.25,
         });
         this.message = response.data.message; // Erfolgsnachricht anzeigen
       } catch (err) {
