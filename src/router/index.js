@@ -4,6 +4,7 @@ const DashboardView = () => import("../views/DashboardView.vue");
 const AddUserView = () => import("../views/AddUserView.vue");
 const LoginView = () => import("../views/LoginView.vue");
 const OddView = () => import("../views/OddView.vue");
+const BetlistView = () => import("../views/BetlistView.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: "/odd",
       name: "odd",
       component: OddView,
+    },
+    {
+      path: "/betlist",
+      name: "betlist",
+      component: BetlistView,
     },
   ],
 });

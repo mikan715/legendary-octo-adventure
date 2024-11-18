@@ -7,6 +7,7 @@ export const useDataStore = defineStore({
   id: "dataStore",
   state: () => ({
     data: [],
+    betlist: {},
     showModal: false,
     kontostand: 100,
     oddValue: "",
@@ -22,6 +23,11 @@ export const useDataStore = defineStore({
     async fetchData() {
       const result = await axios.get(`${apiEndpoint}dashboard`);
       this.data = result.data;
+    },
+
+    async fetchBetlist() {
+      const result = await axios.get(`${apiEndpoint}betlist`);
+      this.betlist = result.data;
     },
 
     async addNewUser(name) {
@@ -63,7 +69,8 @@ export const useDataStore = defineStore({
           odd: this.oddQuote,
           value: this.oddValue,
         });
-        this.message = response.data.message; // Erfolgsnachricht anzeigen
+        this.message = response.data.message;
+        this.fetchData();
       } catch (err) {
         if (err.response && err.response.data) {
           this.message = err.response.data.error; // Fehlermeldung anzeigen

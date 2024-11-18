@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useDataStore } from "../stores/dataStore";
-import { RouterView, useRouter } from "vue-router";
-import { data } from "autoprefixer";
+import { useRouter } from "vue-router";
 
 const dataStore = useDataStore();
 const router = useRouter();
@@ -43,16 +42,13 @@ function convertTimeReadable(date) {
 
   return readableDate;
 }
-
-function showBets() {
-  console.log(dataStore.userData);
-}
 </script>
 
 <template>
   <div class="flex flex-row gap-2">
-    <button class="btn btn-secondary" @click="checkBets()">Check bets</button>
-    <button class="btn btn-secondary" @click="showBets()">Show bets</button>
+    <button class="btn btn-secondary" @click="router.push({ name: 'betlist' })">
+      Show bets
+    </button>
     <button class="btn btn-tertiary" @click="router.push({ name: 'addUser' })">
       Add new user
     </button>
